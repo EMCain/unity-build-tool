@@ -16,18 +16,6 @@ def get_platform_folder_names(game_name, version):
     for platform_name in ['Windows', 'Mac', 'Web']:
         yield f'{game_name}-{platform_name}-{version}'
 
-# 
-    # root folder
-    #     Builds
-    #         GameName-1.0.0
-    #             GameName-Mac-1.0.0
-    #             GameName-Windows-1.0.0
-    #             GameName-Web-1.0.0
-    #             Zips
-    #                 GameName-Mac-1.0.0.zip
-    #                 GameName-Windows-1.0.0.zip
-    #                 GameName-Web-1.0.0.zip
-
 def get_output_folder_name(base_path):
     default_game_name = os.path.basename(base_path)
     game_name = input(f'Enter game name: ({default_game_name})').strip()
@@ -50,15 +38,8 @@ if __name__ == '__main__':
     print('Starting build; hit "enter" to use (default)')
     base_path = get_path()
     builds_path = os.path.join(base_path, 'Builds')
-    # existing = run('Get-ChildItem .')
-    # if (existing.returncode != 0):
-    #     print(f'error reading existing items in directory {existing.stderr}')
-    #     # TODO better quit/exit function
-    #     quit()
-    # else:
-    #     print('existing items: %s', existing.stdout)
     base_items = os.listdir(base_path)
-    print('items found in path: %s', base_items)
+
     if ('Builds' not in base_items):
         print('creating "Builds" folder...')
         os.mkdir(builds_path)
