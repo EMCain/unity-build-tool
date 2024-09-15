@@ -10,7 +10,7 @@ def run(cmd):
 
 def get_path():
     current = os.getcwd()
-    user_defined = input(f'Enter folder to output to ({current})').strip()
+    user_defined = input(f'Enter folder to output to ({current})').strip().strip('\\')
     if (len(user_defined) == 0):
         return current
     return user_defined
@@ -38,7 +38,8 @@ def create_version_build(output_path, version_and_game_name, platform_name):
     print(f'TODO create build for {platform_name}')
 
 if __name__ == '__main__':
-    print('Starting build; hit "enter" to use (default)')
+    print('Starting build; hit "enter" to use (default). Use ctrl + c at any time to cancel.')
+    print('You can get the path of your target folder using shift + right click > "copy path", and paste it here.')
     base_path = get_path()
     builds_path = os.path.join(base_path, BUILDS_FOLDER_BASE_NAME)
     base_items = os.listdir(base_path)
