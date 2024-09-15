@@ -1,5 +1,8 @@
 import subprocess
 import os
+import keyboard
+
+BUILDS_FOLDER_BASE_NAME = 'GameBuilds'
 
 def run(cmd):
     completed = subprocess.run(['Powershell', '-Command', cmd], capture_output=True)
@@ -37,11 +40,11 @@ def create_version_build(output_path, version_and_game_name, platform_name):
 if __name__ == '__main__':
     print('Starting build; hit "enter" to use (default)')
     base_path = get_path()
-    builds_path = os.path.join(base_path, 'Builds')
+    builds_path = os.path.join(base_path, BUILDS_FOLDER_BASE_NAME)
     base_items = os.listdir(base_path)
 
-    if ('Builds' not in base_items):
-        print('creating "Builds" folder...')
+    if (BUILDS_FOLDER_BASE_NAME not in base_items):
+        print(f'creating {BUILDS_FOLDER_BASE_NAME} folder...')
         os.mkdir(builds_path)
     
     build_items = os.listdir(builds_path)
@@ -60,6 +63,10 @@ if __name__ == '__main__':
     for platform_name in ['Windows', 'Mac', 'Web']:
         create_version_build(output_folder_path, output_folder_name, platform_name)
     
+    print('process complete, safe to exit.')
+    while True:
+        keyboard.wait('q')
+        keyboard.send('ctrl+6')
 
 
 # # https://www.phillipsj.net/posts/executing-powershell-from-python/

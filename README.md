@@ -5,9 +5,15 @@ build tooling for Unity game projects
 
 ## to build executable
 
-run `pip install -U pyinstaller && python -m PyInstaller main.py` from the root directory of this folder.
+Install Python 3 if you don't have it (this was built with Python 3.12.6)
 
-If you have trouble running it, see (this troubleshooting guide)[https://pyinstaller.org/en/stable/installation.html#pyinstaller-not-in-path]
+Using Powershell, run the following from the root of this project:
+```
+pip install -r requirements.txt
+python -m PyInstaller --onefile main.py 
+```
+
+If you have trouble running PyInstaller, see (this troubleshooting guide)[https://pyinstaller.org/en/stable/installation.html#pyinstaller-not-in-path]
 
 ## relevant links and sources
 
